@@ -3,6 +3,7 @@ sudo yum update -y \
 && sudo amazon-linux-extras enable nginx1 \
 && sudo yum clean metadata \
 && sudo yum -y install nginx \
+&& sudo service nginx start \
 && wget https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip \
 && unzip AmazonCloudWatchAgent.zip \
 && sudo ./install.sh \
