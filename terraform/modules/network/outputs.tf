@@ -13,11 +13,3 @@ output "private_subnet_id" {
 output "default_sg_id" {
   value = aws_security_group.default.id
 }
-
-output "bastion_ip_addr" {
-  value = aws_instance.bastion.public_ip
-}
-
-output "bastion_dns_addr" {
-  value = aws_instance.bastion.public_dns
-}

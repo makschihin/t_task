@@ -2,12 +2,8 @@ variable "vpc_cidr" {
   description = "The CIDR block of new VPC"
 }
 
-variable "public_subnet" {
-  description = "The CIDR block of public subnet"
-}
-
-variable "private_subnet" {
-  description = "The CIDR block of private subnet"
+variable "vpc_id" {
+  description = "The id of the vpc"
 }
 
 variable "enviroment" {
@@ -16,10 +12,6 @@ variable "enviroment" {
 
 variable "region" {
   description = "The region to launch hosts"
-}
-
-variable "availability_zone" {
-  description = "The AZ that the resources will be launched"
 }
 
 variable "instance_type" {
@@ -46,6 +38,11 @@ variable "ssh_server_port" {
   default     = 22
 }
 
+variable "logname_bastion" {
+  description = "Name of log group"
+  type        = string
+}
+
 variable "retention_bastion" {
   description = "How much time keep log in days"
   type        = number
@@ -56,4 +53,16 @@ variable "kms_key_bastion" {
   description = "The ARN of the KMS Key to use when encrypting logs"
   type        = string
   default     = null
+}
+
+variable "private_subnet_id" {
+  description = "The id of the private subnet to launch the instances"
+}
+
+variable "public_subnet_id" {
+  description = "The id of the public subnet to launch the load balancer"
+}
+
+variable "vpc_sg_id" {
+  description = "The default security group from the vpc"
 }
