@@ -62,11 +62,18 @@ resource "aws_instance" "websrv" {
   iam_instance_profile   = "CWAgentRole"
   vpc_security_group_ids = [ aws_security_group.web_srv_sg.id ]
   key_name               = aws_key_pair.ec2key.key_name
-  user_data              = "${file("${path.module}/files/user_data.sh")}"
+  user_data              = data.template_file.init.rendered #"${file("${path.module}/files/user_data.sh")}"
 
   tags = {
     Name        = "${var.enviroment}-web-${count.index+1}"
     Enviroment  = "${var.enviroment}"
+  }
+}
+
+data "template_file" "init" {
+  template = "${file("${path.module}/files/init.tpl")}"
+  vars = {
+    "consul_address" = "${aws_cloudwatch_log_group.websrvlogs.name}"
   }
 }
 

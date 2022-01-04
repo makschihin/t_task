@@ -46,12 +46,19 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids      = [ aws_security_group.ssh_bastion.id ]
   iam_instance_profile        = "CWAgentRole" 
   subnet_id                   = var.public_subnet_id
-  user_data                   = "${file("${path.module}/files/user_data.sh")}"
+  user_data                   = data.template_file.init.rendered #"${file("${path.module}/files/user_data.sh")}"
   associate_public_ip_address = true
 
   tags = {
     Name       = "${var.enviroment}-bastion"
     Enviroment = var.enviroment
+  }
+}
+
+data "template_file" "init" {
+  template = "${file("${path.module}/files/init.tpl")}"
+  vars = {
+    "consul_address" = "${aws_cloudwatch_log_group.bastionlogs.name}"
   }
 }
 

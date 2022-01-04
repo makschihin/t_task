@@ -3,5 +3,5 @@ output "bastion_public_DNS" {
 }
 
 output "bastion_private_IP" {
-    value = aws_instance.bastion.private_ip
+  value = aws_instance.bastion.private_ip
 }
