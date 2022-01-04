@@ -2,6 +2,14 @@ provider "aws" {
   region = var.region
 }
 
+terraform {
+  backend "s3" {
+    bucket = "terraformtfstatetest"
+    key    = "terraform.tfstate"
+    region = "us-east-2"
+  }
+}
+
 module "network" {
   source            = "../modules/network"
   enviroment        = var.enviroment

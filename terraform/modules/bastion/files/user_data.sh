@@ -5,4 +5,5 @@ sudo yum update -y \
 && sudo ./install.sh \
 && cd /opt/aws/amazon-cloudwatch-agent/bin/ \
 && sudo ./amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:AmazonCloudWatch-agentconf -s \
+&& sudo yum install socat -y \
 && sudo echo "hello" >> /home/ec2-user/hello.txt
