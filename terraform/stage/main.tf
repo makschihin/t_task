@@ -57,3 +57,8 @@ module "monitor" {
   datadog_api_key     = var.datadog_api_key
   datadog_app_key     = var.datadog_app_key
 }
+
+module "iam" {
+  source              = "../modules/iam"
+  region              = var.region
+}

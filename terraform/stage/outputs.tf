@@ -9,3 +9,8 @@ output "bastion_private_IP" {
 output "websrv_private_IP" {
   value = "${module.websrv.websrv_private_IP}"
 }
+
+output "secret" {
+  value     = "${module.iam.secret}"
+  sensitive = true
+}
