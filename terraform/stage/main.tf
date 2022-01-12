@@ -49,3 +49,11 @@ module "websrv" {
   kms_key_websrv      = var.kms_key_websrv
   depends_on          = [ module.network]
 }
+
+module "monitor" {
+  source              = "../modules/monitor"
+  enviroment          = var.enviroment
+  query_for_check     = var.query_for_check
+  datadog_api_key     = var.datadog_api_key
+  datadog_app_key     = var.datadog_app_key
+}

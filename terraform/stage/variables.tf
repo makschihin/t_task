@@ -67,3 +67,15 @@ variable "kms_key_websrv" {
   type        = string
   default     = null
 }
+
+variable "query_for_check" {
+  description = "Query for check"
+}
+
+variable "datadog_api_key" {
+  description = "DataDog api key"
+}
+
+variable "datadog_app_key" {
+  description = "DataDog app key"
+}
